@@ -38,6 +38,7 @@ async function getMercs() {
     await mercsService.getMercs()
   } catch (error) {
     Pop.toast('Could not get ads', 'success')
+    logger.error(error)
   }
 }
 
@@ -77,7 +78,7 @@ onMounted(() => {
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
       </div>
       <div class="col">
-        <Mercantile v-for="merc in mercs" :key="merc.id" :merc="merc" />
+        <Mercantile v-for="merc in mercs" :key="merc.title" :merc="merc" />
       </div>
     </section>
   </section>
