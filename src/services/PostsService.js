@@ -8,12 +8,13 @@ class PostsService {
 
     async getAllPosts() {
         const response = await api.get('api/posts')
-        logger.log('posts', response.data)
+        // logger.log('posts', response.data)
         const posts = response.data.posts.map(post => new Post(post))
-        logger.log('classed posts', posts)
+        // logger.log('classed posts', posts)
         AppState.posts = posts
 
     }
+
 
 }
 

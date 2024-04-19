@@ -18,7 +18,7 @@ function toggleTheme() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-info px-3">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-info px-3 sticky-top">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex align-items-center">
         <h1><i class="mdi mdi-vpn"></i></h1>
@@ -32,9 +32,9 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
-          <router-link :to="{ name: 'About' }" class="btn text-dark lighten-30 selectable text-uppercase">
+          <!-- <router-link :to="{ name: 'About' }" class="btn text-dark lighten-30 selectable text-uppercase">
             About
-          </router-link>
+          </router-link> -->
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->

@@ -1,15 +1,19 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onBeforeMount, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
 import PostCard from '../components/PostCard.vue';
+import { profilesService } from '../services/ProfilesService.js';
+import Mercantile from '../components/Mercantile.vue';
+import { mercsService } from '../services/MercsService.js';
+
 
 
 const user = computed(() => AppState.account)
 const posts = computed(() => AppState.posts)
-
+const mercs = computed(() => AppState.mercs)
 
 
 async function createPost() {
@@ -25,7 +29,23 @@ async function getAllPosts() {
   }
 }
 
-onMounted(() => getAllPosts())
+function deactivateProfile() {
+  profilesService.deactivateProfile()
+}
+
+async function getMercs() {
+  try {
+    await mercsService.getMercs()
+  } catch (error) {
+    Pop.toast('Could not get ads', 'success')
+  }
+}
+
+onMounted(() => {
+  deactivateProfile()
+  getAllPosts()
+  getMercs()
+})
 
 </script>
 
@@ -48,8 +68,19 @@ onMounted(() => getAllPosts())
       </div>
     </div>
   </div>
+  <section class="container-fluid">
+    <section class="row">
+      <div class="col">
 
-  <PostCard v-for="post in posts" :key="post.id" :post="post" />
+      </div>
+      <div class="col-8">
+        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+      </div>
+      <div class="col">
+        <Mercantile v-for="merc in mercs" :key="merc.id" :merc="merc" />
+      </div>
+    </section>
+  </section>
 
 
 

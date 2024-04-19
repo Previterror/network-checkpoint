@@ -21,19 +21,20 @@ defineProps({ post: { type: Post, required: true } })
                 </div>
                 <section class="col">
                     <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: post.creatorId } }"
-                        class="text-decoration-none text-dark">
+                        class="text-decoration-none text-dark fs-2">
                         {{ post.creator.name }}
                     </RouterLink>
-                    <div class="row text-center">
-                        <p class="col-1 m-0 p-0">{{ post.createdAt.toLocaleDateString() }}</p>
-                        <p v-if="post.creator.graduated" class="col text-start m-0 p-0"><i
-                                class="mdi mdi-account-school"></i>
-                        </p>
+                    <div class="row">
+                        <i class="">{{ post.createdAt.toLocaleDateString() }}
+                        </i>
+                        <i v-if="post.creator.graduated" class="mdi mdi-account-school"></i>
                     </div>
                 </section>
             </section>
             <section class="row mt-3">
                 <div class="col-12 fs-5">{{ post.body }}</div>
+            </section>
+            <section class="row text-end text-danger"><i class="mdi mdi-heart"> {{ post.likes.length }}</i>
             </section>
 
         </section>
