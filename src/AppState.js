@@ -18,5 +18,8 @@ export const AppState = reactive({
   activeprofile: null,
 
   /**@type {Merc[]} */
-  mercs: []
+  mercs: [],
+
+  currentpage: 1,
+
 })

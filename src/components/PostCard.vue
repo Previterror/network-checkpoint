@@ -32,11 +32,19 @@ defineProps({ post: { type: Post, required: true } })
                 </section>
             </section>
             <section class="row mt-3">
-                <div class="col-12 fs-5">{{ post.body }}</div>
+                <div class="col-12 fs-5 align-items">
+                    <div class="row justify-content-around">
+                        <div class="col-6">
+                            {{ post.body }}
+                        </div>
+                        <div class="col-4">
+                            <img :src="post.imgUrl" :alt="post.body" :title="post.body" class="rounded">
+                        </div>
+                    </div>
+                </div>
             </section>
             <section class="row text-end text-danger"><i class="mdi mdi-heart"> {{ post.likes.length }}</i>
             </section>
-
         </section>
     </section>
 </template>

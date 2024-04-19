@@ -6,6 +6,12 @@ import { api } from "./AxiosService.js"
 class PostsService {
 
 
+    async changePage(inc) {
+        let response = await api.get(`api/posts?page=${inc}`)
+        logger.log('Page response', response.data)
+    }
+
+
     async getAllPosts() {
         const response = await api.get('api/posts')
         // logger.log('posts', response.data)

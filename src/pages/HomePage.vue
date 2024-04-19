@@ -42,6 +42,15 @@ async function getMercs() {
   }
 }
 
+async function changePage(inc) {
+  try {
+    await postsService.changePage(inc)
+  } catch (error) {
+    Pop.toast('Could not change page', 'error')
+    logger.error(error)
+  }
+}
+
 onMounted(() => {
   deactivateProfile()
   getAllPosts()
@@ -76,6 +85,10 @@ onMounted(() => {
       </div>
       <div class="col-8">
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        <div class="row justify-content-around">
+          <button class="btn btn-primary">Previous</button>
+          <button class="btn btn-primary">Next</button>
+        </div>
       </div>
       <div class="col">
         <Mercantile v-for="merc in mercs" :key="merc.title" :merc="merc" />
