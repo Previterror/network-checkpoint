@@ -5,12 +5,20 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class ProfilesService {
+
+    async changeProPage(inc, profileId) {
+        let response = await api.get(`api/profiles/${profileId}/posts?page=${inc}`)
+        logger.log('ProPage response', response.data)
+        const posts = response.data.posts.map(post => new Post(post))
+        AppState.posts = posts
+        AppState.currentpage = response.data.page
+    }
+
     async getUserPosts(profileId) {
         const response = await api.get(`api/profiles/${profileId}/posts`)
         logger.log('profile posts', response.data)
         const posts = response.data.posts.map(post => new Post(post))
         AppState.posts = posts
-
     }
 
     async getProfile(profileId) {

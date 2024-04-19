@@ -14,6 +14,8 @@ import { mercsService } from '../services/MercsService.js';
 const user = computed(() => AppState.account)
 const posts = computed(() => AppState.posts)
 const mercs = computed(() => AppState.mercs)
+const currentPage = computed(() => AppState.currentpage)
+const maxPages = computed(() => AppState.maxPages)
 
 
 async function createPost() {
@@ -85,9 +87,11 @@ onMounted(() => {
       </div>
       <div class="col-8">
         <PostCard v-for="post in posts" :key="post.id" :post="post" />
-        <div class="row justify-content-around">
-          <button class="btn btn-primary">Previous</button>
-          <button class="btn btn-primary">Next</button>
+        <div class="row justify-content-around p-3">
+          <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)" onclick="window.scrollTo(top)"
+            class="btn btn-primary col-3">Previous</button>
+          <button :disabled="currentPage == maxPages" @click="changePage(currentPage + 1)"
+            onclick="window.scrollTo(top)" class="btn btn-primary col-3">Next</button>
         </div>
       </div>
       <div class="col">

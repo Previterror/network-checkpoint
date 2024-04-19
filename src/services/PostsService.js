@@ -9,6 +9,9 @@ class PostsService {
     async changePage(inc) {
         let response = await api.get(`api/posts?page=${inc}`)
         logger.log('Page response', response.data)
+        const posts = response.data.posts.map(post => new Post(post))
+        AppState.posts = posts
+        AppState.currentpage = response.data.page
     }
 
 

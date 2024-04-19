@@ -38,7 +38,7 @@ defineProps({ post: { type: Post, required: true } })
                             {{ post.body }}
                         </div>
                         <div class="col-4">
-                            <img :src="post.imgUrl" :alt="post.body" :title="post.body" class="rounded">
+                            <img :src="post.imgUrl" :alt="post.body" :title="post.body" class="rounded img-fluid">
                         </div>
                     </div>
                 </div>

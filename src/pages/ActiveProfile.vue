@@ -13,7 +13,9 @@ import Mercantile from '../components/Mercantile.vue';
 const mercs = computed(() => AppState.mercs)
 const posts = computed(() => AppState.posts)
 const route = useRoute()
-let profile = computed(() => AppState.activeprofile)
+const profile = computed(() => AppState.activeprofile)
+const currentPage = computed(() => AppState.currentpage)
+const maxPages = computed(() => AppState.maxPages)
 
 
 async function getProfile() {
@@ -39,6 +41,15 @@ async function getMercs() {
         await mercsService.getMercs()
     } catch (error) {
         Pop.toast('Could not get ads', 'success')
+        logger.error(error)
+    }
+}
+
+async function changePage(inc) {
+    try {
+        await profilesService.changeProPage(inc, route.params.profileId)
+    } catch (error) {
+        Pop.toast('Could not change page', 'error')
         logger.error(error)
     }
 }
@@ -88,6 +99,12 @@ onMounted(() => {
 
                 <section v-if="profile">
                     <PostCard v-for="post in posts" :key="post.id" :post="post" />
+                    <div class="row justify-content-around p-3">
+                        <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)"
+                            onclick="window.scrollTo(top)" class="btn btn-primary col-3">Previous</button>
+                        <button :disabled="currentPage == maxPages" @click="changePage(currentPage + 1)"
+                            onclick="window.scrollTo(top)" class="btn btn-primary col-3">Next</button>
+                    </div>
                 </section>
 
             </section>

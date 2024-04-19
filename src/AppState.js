@@ -22,4 +22,5 @@ export const AppState = reactive({
 
   currentpage: 1,
 
+  maxPages: 0,
 })
