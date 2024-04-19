@@ -13,14 +13,19 @@ defineProps({ post: { type: Post, required: true } })
     <section class="row card m-4 shadow">
         <section class="col-12 p-4 ">
             <section class="row">
-                <div class="col-2">
-                    <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name"
-                        class="img-fluid user-img">
+                <div class="col-12 col-md-1">
+                    <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: post.creatorId } }">
+                        <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name"
+                            class="img-fluid user-img">
+                    </RouterLink>
                 </div>
                 <section class="col">
-                    <h3>{{ post.creator.name }}</h3>
+                    <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: post.creatorId } }"
+                        class="text-decoration-none text-dark">
+                        {{ post.creator.name }}
+                    </RouterLink>
                     <div class="row text-center">
-                        <p class="col-2 m-0 p-0">{{ post.createdAt.toLocaleDateString() }}</p>
+                        <p class="col-1 m-0 p-0">{{ post.createdAt.toLocaleDateString() }}</p>
                         <p v-if="post.creator.graduated" class="col text-start m-0 p-0"><i
                                 class="mdi mdi-account-school"></i>
                         </p>
