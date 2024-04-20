@@ -12,6 +12,8 @@ class ProfilesService {
         const posts = response.data.posts.map(post => new Post(post))
         AppState.posts = posts
         AppState.currentpage = response.data.page
+        AppState.currentpage = response.data.page
+        AppState.maxPages = response.data.totalPages
     }
 
     async getUserPosts(profileId) {
@@ -19,6 +21,8 @@ class ProfilesService {
         logger.log('profile posts', response.data)
         const posts = response.data.posts.map(post => new Post(post))
         AppState.posts = posts
+        AppState.currentpage = response.data.page
+        AppState.maxPages = response.data.totalPages
     }
 
     async getProfile(profileId) {

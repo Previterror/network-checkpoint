@@ -12,6 +12,7 @@ class PostsService {
         const posts = response.data.posts.map(post => new Post(post))
         AppState.posts = posts
         AppState.currentpage = response.data.page
+        AppState.maxPages = response.data.totalPages
     }
 
 
@@ -21,7 +22,8 @@ class PostsService {
         const posts = response.data.posts.map(post => new Post(post))
         // logger.log('classed posts', posts)
         AppState.posts = posts
-
+        AppState.currentpage = response.data.page
+        AppState.maxPages = response.data.totalPages
     }
 
 
