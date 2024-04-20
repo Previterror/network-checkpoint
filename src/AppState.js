@@ -25,5 +25,8 @@ export const AppState = reactive({
   maxPages: 1,
 
   /**@type {Profile[]} */
-  profiles: null
+  profiles: null,
+
+  /**@type {Profile} */
+  userprofile: null
 })

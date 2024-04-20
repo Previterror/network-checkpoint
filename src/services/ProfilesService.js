@@ -39,6 +39,14 @@ class ProfilesService {
         AppState.activeprofile = activeprofile
     }
 
+    async getUserProfile(userId) {
+        const response = await api.get(`api/profiles/${userId}`)
+        // logger.log('getting User Profile', response.data)
+        let userprofile = new Profile(response.data)
+        AppState.userprofile = userprofile
+        logger.log('appstate userpro', AppState.userprofile)
+    }
+
     deactivateProfile() {
         AppState.activeprofile = null
     }

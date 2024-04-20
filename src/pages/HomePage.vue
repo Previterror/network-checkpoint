@@ -19,6 +19,7 @@ const mercs = computed(() => AppState.mercs)
 const currentPage = computed(() => AppState.currentpage)
 const maxPages = computed(() => AppState.maxPages)
 const profiles = computed(() => AppState.profiles)
+const userprofile = computed(() => AppState.userprofile)
 
 const newPostData = ref({
   body: '',
@@ -66,6 +67,9 @@ async function changePage(inc) {
   }
 }
 
+
+
+
 onMounted(() => {
   deactivateProfile()
   getAllPosts()
@@ -97,12 +101,12 @@ onMounted(() => {
   </div>
   <section class="container-fluid">
     <section class="row">
-      <div class="col">
-        <div v-if="user">
+      <div v-if="userprofile" class="col-4">
+        <div>
           <UserCard />
         </div>
       </div>
-      <div class="col-8">
+      <div class="col">
         <div v-if="profiles">
           <h1>Profiles</h1>
           <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
@@ -118,7 +122,7 @@ onMounted(() => {
             onclick="window.scrollTo(top)" class="btn btn-primary col-3">Next</button>
         </div>
       </div>
-      <div class="col">
+      <div class="col-2">
         <Mercantile v-for="merc in mercs" :key="merc.title" :merc="merc" />
       </div>
     </section>

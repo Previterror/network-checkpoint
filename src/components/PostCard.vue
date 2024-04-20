@@ -41,7 +41,7 @@ async function likePost(postId) {
     <section class="row card m-4 shadow">
         <section class="col-12 p-4 ">
             <section class="row">
-                <div class="col-12 col-md-1">
+                <div class="col-12 col-md-2">
                     <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: post.creatorId } }">
                         <img :src="post.creator.picture" :alt="post.creator.name" :title="post.creator.name"
                             class="img-fluid user-img">

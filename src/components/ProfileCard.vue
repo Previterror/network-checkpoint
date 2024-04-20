@@ -17,7 +17,7 @@ defineProps({ profile: { type: Profile, required: true } })
                             class="img-fluid user-img">
                     </RouterLink>
                 </div>
-                <section class="col">
+                <section class="col p-0">
                     <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: profile.id } }"
                         class="text-decoration-none text-dark fs-2">
                         {{ profile.name }}
