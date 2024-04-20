@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import SearchBar from './SearchBar.vue';
 
 const theme = ref(loadState('theme') || 'light')
 
@@ -37,17 +38,10 @@ function toggleTheme() {
           </router-link> -->
         </li>
       </ul>
-      <!-- LOGIN COMPONENT HERE -->
-      <div class="container">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-            aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Button</button>
-          </div>
-        </div>
 
-      </div>
+      <SearchBar />
+      <!-- LOGIN COMPONENT HERE -->
+
       <Login />
     </div>
   </nav>

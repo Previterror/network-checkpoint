@@ -71,7 +71,7 @@ onMounted(() => {
             <section class="col-10">
 
                 <section v-if="profile" class="card m-2">
-                    <section class="row  m-2 position-relative">
+                    <section class="row m-1 position-relative">
                         <img :src="profile.coverImg" alt="" class="img-fluid cover-img rounded-top m-0 p-0">
                     </section>
                     <section class="row mt-2 mx-2">
