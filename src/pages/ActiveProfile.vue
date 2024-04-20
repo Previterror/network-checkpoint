@@ -16,6 +16,7 @@ const route = useRoute()
 const profile = computed(() => AppState.activeprofile)
 const currentPage = computed(() => AppState.currentpage)
 const maxPages = computed(() => AppState.maxPages)
+const user = computed(() => AppState.account)
 
 
 async function getProfile() {
@@ -26,6 +27,7 @@ async function getProfile() {
         logger.error(error)
     }
 }
+
 
 async function getUserPosts() {
     try {
@@ -98,7 +100,7 @@ onMounted(() => {
 
 
                 <section v-if="profile">
-                    <PostCard v-for="post in posts" :key="post.id" :post="post" />
+                    <PostCard v-if="user" v-for="post in posts" :key="post.id" :post="post" :user="user" />
                     <div class="row justify-content-around p-3">
                         <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)"
                             onclick="window.scrollTo(top)" class="btn btn-primary col-3">Previous</button>

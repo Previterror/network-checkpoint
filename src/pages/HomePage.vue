@@ -77,7 +77,7 @@ onMounted(() => {
 
   <!-- SECTION - Create Post Form -->
   <div v-if="user" class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="p-2 card align-items-center shadow rounded elevation-3 mt-3 mx-1">
+    <div class="p-3 card align-items-center shadow rounded elevation-3 mt-3 mx-1">
       <div class="row gap-2 justify-content-around">
         <div class="m-1 col-3">
           <img v-if="user" :src="user.picture" :alt="user.name" :title="user.name" class="img-fluid form-img">
@@ -99,14 +99,14 @@ onMounted(() => {
       <div class="col">
 
       </div>
-      <div class="col-8">
+      <div v-if="user" class="col-8">
         <div v-if="profiles">
           <h1>Profiles</h1>
           <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
         </div>
         <div v-if="posts">
           <h1>Posts</h1>
-          <PostCard v-for="post in posts" :key="post.id" :post="post" />
+          <PostCard v-for="post in posts" :key="post.id" :post="post" :user="user" />
         </div>
         <div class="row justify-content-around p-3">
           <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)" onclick="window.scrollTo(top)"

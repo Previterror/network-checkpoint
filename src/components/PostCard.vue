@@ -1,10 +1,27 @@
 <script setup>
 import { Post } from '../models/Post.js';
+import { Account } from '../models/Account.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
+import { postsService } from '../services/PostsService.js';
 
 
 
-defineProps({ post: { type: Post, required: true } })
+defineProps(
+    {
+        post: { type: Post, required: true },
+        user: { type: Account, required: true }
+    }
+)
 
+async function deletePost(postId) {
+    try {
+        await postsService.deletePost(postId)
+    } catch (error) {
+        Pop.toast('Could not delete post', 'error')
+        logger.error(error)
+    }
+}
 
 </script>
 
@@ -43,7 +60,14 @@ defineProps({ post: { type: Post, required: true } })
                     </div>
                 </div>
             </section>
-            <section class="row text-end text-danger"><i class="mdi mdi-heart"> {{ post.likes.length }}</i>
+            <section class="row justify-content-between mt-2">
+                <button v-if="user.id == post.creatorId" @click="deletePost(post.id)"
+                    class="col-1 btn btn-outline-danger">
+                    <i class="mdi mdi-delete"></i>
+                </button>
+                <button class="col-2 btn btn-outline-danger">
+                    <i class="mdi mdi-heart"> {{ post.likes.length }}</i>
+                </button>
             </section>
         </section>
     </section>
