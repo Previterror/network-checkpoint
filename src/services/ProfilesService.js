@@ -5,6 +5,10 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class ProfilesService {
+    async search(searchQuery) {
+        const response = await api.get(`/api/profiles?query=${searchQuery}`)
+        logger.log('search profiles', response.data)
+    }
 
     async changeProPage(inc, profileId) {
         let response = await api.get(`api/profiles/${profileId}/posts?page=${inc}`)

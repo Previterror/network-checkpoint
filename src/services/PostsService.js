@@ -4,8 +4,9 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class PostsService {
-    search(value) {
-        throw new Error('Method not implemented.')
+    async search(searchQuery) {
+        const response = await api.get(`/api/posts?query=${searchQuery}`)
+        logger.log('search posts', response.data)
     }
 
 
