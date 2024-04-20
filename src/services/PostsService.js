@@ -1,3 +1,4 @@
+import { applyStyles } from "@popperjs/core/index.js"
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
 import { logger } from "../utils/Logger.js"
@@ -5,8 +6,11 @@ import { api } from "./AxiosService.js"
 
 class PostsService {
     async search(searchQuery) {
+        AppState.posts = []
         const response = await api.get(`/api/posts?query=${searchQuery}`)
-        logger.log('search posts', response.data)
+        // logger.log('search posts', response.data)
+        const foundPosts = response.data.posts.map(post => new Post(post))
+        AppState.posts = foundPosts
     }
 
 

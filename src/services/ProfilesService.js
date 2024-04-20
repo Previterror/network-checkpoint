@@ -6,8 +6,11 @@ import { api } from "./AxiosService.js"
 
 class ProfilesService {
     async search(searchQuery) {
+        AppState.profiles = []
         const response = await api.get(`/api/profiles?query=${searchQuery}`)
-        logger.log('search profiles', response.data)
+        // logger.log('search profiles', response.data)
+        const foundProfiles = response.data.map(profile => new Profile(profile))
+        AppState.profiles = foundProfiles
     }
 
     async changeProPage(inc, profileId) {
