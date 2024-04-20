@@ -10,6 +10,8 @@ class PostsService {
         logger.log('search posts', response.data)
         const foundPosts = response.data.posts.map(post => new Post(post))
         AppState.posts = foundPosts
+        AppState.currentpage = response.data.page
+        AppState.maxPages = response.data.totalPages
     }
 
 
