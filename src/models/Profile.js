@@ -7,7 +7,7 @@ export class Profile {
         this.email = data.email || ''
         this.github = data.github || ''
         this.graduated = data.graduated || false
-        this.id = data.id
+        this.id = data.id || data._id
         this.linkedin = data.linkedin || ''
         this.name = data.name
         this.picture = data.picture || ''

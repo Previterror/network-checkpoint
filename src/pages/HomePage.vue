@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard.vue';
 import { profilesService } from '../services/ProfilesService.js';
 import Mercantile from '../components/Mercantile.vue';
 import { mercsService } from '../services/MercsService.js';
+import ProfileCard from '../components/ProfileCard.vue';
 
 
 
@@ -16,7 +17,7 @@ const posts = computed(() => AppState.posts)
 const mercs = computed(() => AppState.mercs)
 const currentPage = computed(() => AppState.currentpage)
 const maxPages = computed(() => AppState.maxPages)
-
+const profiles = computed(() => AppState.profiles)
 
 async function createPost() {
 
@@ -86,7 +87,14 @@ onMounted(() => {
 
       </div>
       <div class="col-8">
-        <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        <div v-if="profiles">
+          <h1>Profiles</h1>
+          <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
+        </div>
+        <div v-if="posts">
+          <h1>Posts</h1>
+          <PostCard v-for="post in posts" :key="post.id" :post="post" />
+        </div>
         <div class="row justify-content-around p-3">
           <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)" onclick="window.scrollTo(top)"
             class="btn btn-primary col-3">Previous</button>
