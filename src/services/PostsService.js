@@ -4,6 +4,12 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class PostsService {
+    async createPost(newPostData) {
+        const response = await api.post('/api/posts', newPostData)
+        logger.log('create response', response.data)
+        const newPost = new Post(response.data)
+        AppState.posts.unshift(newPost)
+    }
     async search(searchQuery) {
         AppState.posts = []
         const response = await api.get(`/api/posts?query=${searchQuery}`)

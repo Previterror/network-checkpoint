@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeMount, onMounted } from 'vue';
+import { computed, onBeforeMount, onMounted, ref } from 'vue';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
@@ -19,8 +19,19 @@ const currentPage = computed(() => AppState.currentpage)
 const maxPages = computed(() => AppState.maxPages)
 const profiles = computed(() => AppState.profiles)
 
-async function createPost() {
+const newPostData = ref({
+  body: '',
+  imgUrl: '',
+})
 
+async function createPost() {
+  try {
+    logger.log('creating post', newPostData.value)
+    await postsService.createPost(newPostData.value)
+  } catch (error) {
+    Pop.toast('Could not create post', 'error')
+    logger.error(error)
+  }
 }
 
 async function getAllPosts() {
@@ -66,15 +77,17 @@ onMounted(() => {
 
   <!-- SECTION - Create Post Form -->
   <div v-if="user" class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="p-2 card align-items-center shadow rounded elevation-3 mt-3">
+    <div class="p-2 card align-items-center shadow rounded elevation-3 mt-3 mx-1">
       <div class="row gap-2 justify-content-around">
         <div class="m-1 col-3">
           <img v-if="user" :src="user.picture" :alt="user.name" :title="user.name" class="img-fluid form-img">
         </div>
 
-        <div class="col-8">
-          <form @submit="createPost()" class="text-end">
-            <textarea name="body" id="body" cols="50" rows="5" class="my-2 me-5"></textarea>
+        <div class="col-12 col-md-8">
+          <form @submit.prevent="createPost()" class="text-end row">
+            <textarea v-model="newPostData.body" name="body" id="body" cols="50" rows="5" class="my-2 me-5"
+              placeholder="Give us your thoughts..."></textarea>
+            <input v-model="newPostData.imgUrl" type="text" class="my-2" placeholder="Image Link">
             <button type="submit" class="btn btn-outline-info me-5">Submit</button>
           </form>
         </div>
