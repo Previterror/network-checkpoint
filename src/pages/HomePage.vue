@@ -9,6 +9,7 @@ import { profilesService } from '../services/ProfilesService.js';
 import Mercantile from '../components/Mercantile.vue';
 import { mercsService } from '../services/MercsService.js';
 import ProfileCard from '../components/ProfileCard.vue';
+import UserCard from '../components/UserCard.vue';
 
 
 
@@ -97,16 +98,18 @@ onMounted(() => {
   <section class="container-fluid">
     <section class="row">
       <div class="col">
-
+        <div v-if="user">
+          <UserCard />
+        </div>
       </div>
-      <div v-if="user" class="col-8">
+      <div class="col-8">
         <div v-if="profiles">
           <h1>Profiles</h1>
           <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
         </div>
         <div v-if="posts">
           <h1>Posts</h1>
-          <PostCard v-for="post in posts" :key="post.id" :post="post" :user="user" />
+          <PostCard v-for="post in posts" :key="post.id" :post="post" />
         </div>
         <div class="row justify-content-around p-3">
           <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)" onclick="window.scrollTo(top)"

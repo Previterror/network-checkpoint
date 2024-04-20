@@ -4,13 +4,15 @@ import { Account } from '../models/Account.js';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 import { postsService } from '../services/PostsService.js';
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
 
-
+const user = computed(() => AppState.account)
 
 defineProps(
     {
         post: { type: Post, required: true },
-        user: { type: Account, required: true }
+
     }
 )
 
@@ -19,6 +21,15 @@ async function deletePost(postId) {
         await postsService.deletePost(postId)
     } catch (error) {
         Pop.toast('Could not delete post', 'error')
+        logger.error(error)
+    }
+}
+
+async function likePost(postId) {
+    try {
+        await postsService.likePost(postId)
+    } catch (error) {
+        Pop.toast('Could not like post', 'error')
         logger.error(error)
     }
 }
@@ -61,11 +72,11 @@ async function deletePost(postId) {
                 </div>
             </section>
             <section class="row justify-content-between mt-2">
-                <button v-if="user.id == post.creatorId" @click="deletePost(post.id)"
+                <button v-if="user?.id == post.creatorId" @click="deletePost(post.id)"
                     class="col-1 btn btn-outline-danger">
                     <i class="mdi mdi-delete"></i>
                 </button>
-                <button class="col-2 btn btn-outline-danger">
+                <button @click="likePost(post.id)" class="col-2 btn btn-outline-danger">
                     <i class="mdi mdi-heart"> {{ post.likes.length }}</i>
                 </button>
             </section>

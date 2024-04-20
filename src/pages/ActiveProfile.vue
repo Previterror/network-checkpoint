@@ -100,13 +100,15 @@ onMounted(() => {
 
 
                 <section v-if="profile">
-                    <PostCard v-if="user" v-for="post in posts" :key="post.id" :post="post" :user="user" />
+
+                    <PostCard v-for="post in posts" :key="post.id" :post="post" />
                     <div class="row justify-content-around p-3">
                         <button :disabled="currentPage == 1" @click="changePage(currentPage - 1)"
                             onclick="window.scrollTo(top)" class="btn btn-primary col-3">Previous</button>
                         <button :disabled="currentPage == maxPages" @click="changePage(currentPage + 1)"
                             onclick="window.scrollTo(top)" class="btn btn-primary col-3">Next</button>
                     </div>
+
                 </section>
 
             </section>

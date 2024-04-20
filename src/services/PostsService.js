@@ -5,6 +5,15 @@ import { api } from "./AxiosService.js"
 
 class PostsService {
 
+    async likePost(postId) {
+        const response = await api.post(`/api/posts/${postId}/like`)
+        logger.log('like response', response.data)
+        // const likedPost = response.data
+        // let postToUpdate = AppState.posts.findIndex(post => post.id = postId)
+        // postToUpdate = likedPost
+        this.getAllPosts()
+    }
+
 
     async createPost(newPostData) {
         const response = await api.post('/api/posts', newPostData)
