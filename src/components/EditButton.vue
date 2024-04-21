@@ -37,7 +37,7 @@ onMounted(() => {
 
 
 <template>
-    <button class="btn btn-success p-0 col-3" data-bs-toggle="modal" data-bs-target="#editModal"><i
+    <button class="btn btn-success p-0 row" data-bs-toggle="modal" data-bs-target="#editModal"><i
             class="mdi mdi-pencil"></i></button>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

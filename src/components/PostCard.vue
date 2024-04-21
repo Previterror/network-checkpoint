@@ -62,10 +62,13 @@ async function likePost(postId) {
             <section class="row mt-3">
                 <div class="col-12 fs-5 align-items">
                     <div class="row justify-content-around">
-                        <div class="col-6">
+                        <div v-if="post.imgUrl" class="col-8">
                             {{ post.body }}
                         </div>
-                        <div class="col-4">
+                        <div v-else class="col">
+                            {{ post.body }}
+                        </div>
+                        <div v-if="post.imgUrl" class="col-4">
                             <img :src="post.imgUrl" :alt="post.body" :title="post.body" class="rounded img-fluid">
                         </div>
                     </div>

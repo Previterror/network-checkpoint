@@ -90,7 +90,9 @@ onMounted(() => {
                                     </a>
                                     <a :href="profile.github" v-if="profile.github"
                                         class="mdi mdi-github text-decoration-none text-dark"></a>
-                                    <EditButton class="p-1" :user="user" />
+                                    <div>
+                                        <EditButton class="p-1" :user="user" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -133,9 +135,9 @@ onMounted(() => {
 }
 
 .user-img {
+    aspect-ratio: 1/1;
     width: 20%;
     border-radius: 50%;
-    aspect-ratio: 1/1;
     object-fit: cover;
     transform: translate(10px, -80px);
 }

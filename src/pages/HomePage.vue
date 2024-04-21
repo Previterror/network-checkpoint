@@ -10,6 +10,7 @@ import Mercantile from '../components/Mercantile.vue';
 import { mercsService } from '../services/MercsService.js';
 import ProfileCard from '../components/ProfileCard.vue';
 import UserCard from '../components/UserCard.vue';
+import MercHoriz from '../components/MercHoriz.vue';
 
 
 
@@ -81,7 +82,7 @@ onMounted(() => {
 <template>
 
   <!-- SECTION - Create Post Form -->
-  <div v-if="user" class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <section v-if="user" class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div class="p-3 card align-items-center shadow rounded elevation-3 mt-3 mx-1">
       <div class="row gap-2 justify-content-around">
         <div class="m-1 col-3">
@@ -99,18 +100,23 @@ onMounted(() => {
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+
   <section class="container-fluid">
     <section class="row">
-      <div v-if="userprofile" class="col-3">
-        <div class="d-none d-md-block">
+      <div v-if="userprofile" class="col-12 col-md-3">
+        <div>
           <UserCard />
         </div>
       </div>
-      <div id="main" class="col-7">
+      <div id="main" class="col-12 col-md-7">
         <div v-if="profiles">
           <h1>Profiles</h1>
           <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
+        </div>
+        <div class="d-md-none">
+          <MercHoriz v-for="merc in mercs" :key="merc.title" :merc="merc" />
         </div>
         <div v-if="posts">
           <h1>Posts</h1>
@@ -123,7 +129,7 @@ onMounted(() => {
             onclick="window.scrollTo(top)" class="btn btn-primary col-3">Next</button>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-2 d-none d-md-block">
         <Mercantile v-for="merc in mercs" :key="merc.title" :merc="merc" />
       </div>
     </section>
