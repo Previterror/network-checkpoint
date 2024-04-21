@@ -103,7 +103,7 @@ onMounted(() => {
   <section class="container-fluid">
     <section class="row">
       <div v-if="userprofile" class="col-3">
-        <div>
+        <div class="d-none d-md-block">
           <UserCard />
         </div>
       </div>
