@@ -9,6 +9,7 @@ import PostCard from '../components/PostCard.vue';
 import { postsService } from '../services/PostsService.js';
 import { mercsService } from '../services/MercsService.js';
 import Mercantile from '../components/Mercantile.vue';
+import EditButton from '../components/EditButton.vue';
 
 const mercs = computed(() => AppState.mercs)
 const posts = computed(() => AppState.posts)
@@ -89,11 +90,11 @@ onMounted(() => {
                                     </a>
                                     <a :href="profile.github" v-if="profile.github"
                                         class="mdi mdi-github text-decoration-none text-dark"></a>
+                                    <EditButton class="p-1" :user="user" />
                                 </div>
                             </div>
                             <div class="row">
                                 <h1 class="col">{{ profile.name }}</h1>
-                                <!-- <EditButton class="col-3" :user="profile" /> -->
                             </div>
                         </div>
                         <p>{{ profile.bio }}</p>

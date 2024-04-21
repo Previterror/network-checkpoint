@@ -85,7 +85,8 @@ onMounted(() => {
     <div class="p-3 card align-items-center shadow rounded elevation-3 mt-3 mx-1">
       <div class="row gap-2 justify-content-around">
         <div class="m-1 col-3">
-          <img v-if="user" :src="user.picture" :alt="user.name" :title="user.name" class="img-fluid form-img">
+          <img v-if="user" :src="user.picture" :alt="user.name" :title="user.name"
+            class="img-fluid form-img border border-info border-5">
         </div>
 
         <div class="col-12 col-md-8">

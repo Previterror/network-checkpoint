@@ -8,7 +8,7 @@ import { AppState } from '../AppState.js';
 import { accountService } from '../services/AccountService.js';
 import { Account } from '../models/Account.js';
 
-defineProps({ user: { type: Account, required: true } })
+defineProps({ user: { type: Profile, required: true } })
 
 const editBody = ref({
     bio: '',
@@ -31,7 +31,7 @@ async function editProfile() {
 }
 
 onMounted(() => {
-    editBody.value = { ...AppState.account }
+    editBody.value = { ...AppState.userprofile }
 })
 </script>
 
@@ -49,16 +49,22 @@ onMounted(() => {
                 </div>
                 <div class="modal-body">
                     <form @submit.prevent="editProfile()" class="row p-2 gap-1">
-                        <input v-model="editBody.name" type="text" placeholder="Name" class="col-5 form-control">
-                        <input v-model="editBody.picture" type="text" placeholder="Profile Picture"
-                            class="col-5 form-control">
-                        <input v-model="editBody.bio" type="text" placeholder="Bio" class="col-12 form-control">
-                        <input type="text" placeholder="Cover Image" class="col-5 form-control">
-                        <input v-model="editBody.email" type="text" placeholder="Email" class="col-5 form-control">
-                        <input v-model="editBody.github" type="text" placeholder="GitHub" class="col-5 form-control">
-                        <input v-model="editBody.linkedin" type="text" placeholder="LinkedIn"
-                            class="col-5 form-control">
-                        <input v-model="editBody.resume" type="text" placeholder="Resume" class="col-12 form-control">
+                        <input v-model="editBody.name" type="text" placeholder="Name" class="col-5 form-control"
+                            maxlength="100">
+                        <input v-model="editBody.picture" type="url" placeholder="Profile Picture"
+                            class="col-5 form-control" maxlength="500">
+                        <input v-model="editBody.bio" type="text" placeholder="Bio" class="col-12 form-control"
+                            maxlength="1000">
+                        <input v-model="editBody.coverImg" type="url" placeholder="Cover Image"
+                            class="col-5 form-control" maxlength="500">
+                        <input v-model="editBody.email" type="text" placeholder="Email" class="col-5 form-control"
+                            maxlength="500">
+                        <input v-model="editBody.github" type="text" placeholder="GitHub" class="col-5 form-control"
+                            maxlength="500">
+                        <input v-model="editBody.linkedin" type="text" placeholder="LinkedIn" class="col-5 form-control"
+                            maxlength="500">
+                        <input v-model="editBody.resume" type="text" placeholder="Resume" class="col-12 form-control"
+                            maxlength="500">
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
