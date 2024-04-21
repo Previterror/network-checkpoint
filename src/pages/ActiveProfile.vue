@@ -91,7 +91,10 @@ onMounted(() => {
                                         class="mdi mdi-github text-decoration-none text-dark"></a>
                                 </div>
                             </div>
-                            <h1>{{ profile.name }}</h1>
+                            <div class="row">
+                                <h1 class="col">{{ profile.name }}</h1>
+                                <!-- <EditButton class="col-3" :user="profile" /> -->
+                            </div>
                         </div>
                         <p>{{ profile.bio }}</p>
                     </section>

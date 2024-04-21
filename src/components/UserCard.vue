@@ -1,11 +1,12 @@
 <script setup>
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import EditButton from './EditButton.vue';
 
 
 
 const userprofile = computed(() => AppState.userprofile)
-
+const user = computed(() => AppState.account)
 
 
 </script>
@@ -18,7 +19,7 @@ const userprofile = computed(() => AppState.userprofile)
         </section>
         <section class="row mt-2 mx-2">
             <img :src="userprofile.picture" alt="" class="user-img border border-info border-5 p-0">
-            <div class="col mt-2 mx-2">
+            <div class="col-12 col-md-8 mt-2 mx-2">
                 <div class="row justify-content-between align-items-center">
                     <h4 class="col">{{ userprofile.class }} <i v-if="userprofile.graduated"
                             class="mdi mdi-account-school"></i>
@@ -31,7 +32,12 @@ const userprofile = computed(() => AppState.userprofile)
                             class="mdi mdi-github text-decoration-none text-dark"></a>
                     </div>
                 </div>
-                <h1>{{ userprofile.name }}</h1>
+                <div class="row justify-content-between">
+                    <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: userprofile.id } }" class="col-8">
+                        <p class="fs-1 m-0 text-decoration-none text-dark">{{ userprofile.name }}</p>
+                    </RouterLink>
+                    <EditButton :user="user" />
+                </div>
             </div>
             <p>{{ userprofile.bio }}</p>
         </section>
@@ -45,5 +51,6 @@ const userprofile = computed(() => AppState.userprofile)
     border-radius: 50%;
     aspect-ratio: 1/1;
     object-fit: cover;
+    transform: translate(10px, -80px);
 }
 </style>

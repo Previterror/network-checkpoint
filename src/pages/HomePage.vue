@@ -101,12 +101,12 @@ onMounted(() => {
   </div>
   <section class="container-fluid">
     <section class="row">
-      <div v-if="userprofile" class="col-4">
+      <div v-if="userprofile" class="col-3">
         <div>
           <UserCard />
         </div>
       </div>
-      <div class="col">
+      <div id="main" class="col-7">
         <div v-if="profiles">
           <h1>Profiles</h1>
           <ProfileCard v-for="profile in profiles" :key="profile.id" :profile="profile" />
