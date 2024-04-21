@@ -22,7 +22,7 @@ const maxPages = computed(() => AppState.maxPages)
 const profiles = computed(() => AppState.profiles)
 const userprofile = computed(() => AppState.userprofile)
 
-const newPostData = ref({
+let newPostData = ref({
   body: '',
   imgUrl: '',
 })
@@ -31,6 +31,10 @@ async function createPost() {
   try {
     logger.log('creating post', newPostData.value)
     await postsService.createPost(newPostData.value)
+    newPostData.value = {
+      body: '',
+      imgUrl: '',
+    }
   } catch (error) {
     Pop.toast('Could not create post', 'error')
     logger.error(error)
