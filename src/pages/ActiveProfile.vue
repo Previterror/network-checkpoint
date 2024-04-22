@@ -138,7 +138,7 @@ onMounted(() => {
 
 .user-img {
     aspect-ratio: 1/1;
-    width: 20%;
+    width: 200px;
     border-radius: 50%;
     object-fit: cover;
     transform: translate(10px, -80px);

@@ -75,10 +75,11 @@ async function likePost(postId) {
                 </div>
             </section>
             <section class="row justify-content-between mt-2">
-                <button :disabled="user?.id == post.creatorId" @click="likePost(post.id)"
+                <button v-if="user" :disabled="user?.id == post.creatorId" @click="likePost(post.id)"
                     class="col-2 btn btn-outline-danger">
                     <i class="mdi mdi-heart"> {{ post.likes.length }}</i>
                 </button>
+                <p v-else class="col-2 text-danger">{{ post.likes.length }}</p>
                 <button v-if="user?.id == post.creatorId" @click="deletePost(post.id)"
                     class="col-1 btn btn-outline-danger">
                     <i class="mdi mdi-delete"></i>

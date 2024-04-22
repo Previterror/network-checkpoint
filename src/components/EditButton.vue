@@ -19,6 +19,8 @@ const editBody = ref({
     name: '',
     picture: '',
     resume: '',
+    class: '',
+    graduated: ''
 })
 
 async function editProfile() {
@@ -49,22 +51,34 @@ onMounted(() => {
                 </div>
                 <div class="modal-body">
                     <form @submit.prevent="editProfile()" class="row p-2 gap-1">
+                        <label for="name">Name:</label>
                         <input v-model="editBody.name" type="text" placeholder="Name" class="col-5 form-control"
-                            maxlength="100">
+                            maxlength="100" id="name">
+                        <label for="picture">Profile Picture:</label>
                         <input v-model="editBody.picture" type="url" placeholder="Profile Picture"
-                            class="col-5 form-control" maxlength="500">
+                            class="col-5 form-control" maxlength="500" id="picture">
+                        <label for="bio">Bio:</label>
                         <input v-model="editBody.bio" type="text" placeholder="Bio" class="col-12 form-control"
-                            maxlength="1000">
+                            maxlength="1000" id="bio">
+                        <label for="coverImg">Cover Image:</label>
                         <input v-model="editBody.coverImg" type="url" placeholder="Cover Image"
-                            class="col-5 form-control" maxlength="500">
-                        <input v-model="editBody.email" type="text" placeholder="Email" class="col-5 form-control"
-                            maxlength="500">
+                            class="col-5 form-control" maxlength="500" id="coverImg">
+                        <label for="class">Class:</label>
+                        <input v-model="editBody.class" type="text" placeholder="Class" class="col-5 form-control"
+                            maxlength="500" id="class">
+                        <div class="d-flex gap-1">
+                            <label for="graduated" class="form-check-label">Graduated:</label>
+                            <input type="checkbox" class="form-check-input" id="graduated" name="graduated">
+                        </div>
+                        <label for="github">GitHub:</label>
                         <input v-model="editBody.github" type="text" placeholder="GitHub" class="col-5 form-control"
-                            maxlength="500">
+                            maxlength="500" id="github">
+                        <label for="linkedin">LinkedIn:</label>
                         <input v-model="editBody.linkedin" type="text" placeholder="LinkedIn" class="col-5 form-control"
-                            maxlength="500">
-                        <input v-model="editBody.resume" type="text" placeholder="Resume" class="col-12 form-control"
-                            maxlength="500">
+                            maxlength="500" id="linkedin">
+                        <label for="resume">Resume:</label>
+                        <input v-model="editBody.resume" type="text" placeholder="Resume"
+                            class="col-12 form-control mb-1" maxlength="500" id="resume">
                         <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>

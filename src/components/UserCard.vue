@@ -18,7 +18,9 @@ const user = computed(() => AppState.account)
             <img :src="userprofile.coverImg" alt="" class="img-fluid cover-img rounded-top m-0 p-0">
         </section>
         <section class="row mt-2 mx-2">
-            <img :src="userprofile.picture" alt="" class="user-img border border-info border-5 p-0">
+            <RouterLink :to="{ name: 'ActiveProfile', params: { profileId: userprofile.id } }">
+                <img :src="userprofile.picture" alt="" class="user-img border border-info border-5 p-0">
+            </RouterLink>
             <div class="col-12 mt-2 mx-2 p-2">
                 <div class="row justify-content-between align-items-center">
                     <h4 class="col-3">{{ userprofile.class }} <i v-if="userprofile.graduated"
