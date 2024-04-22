@@ -3,6 +3,7 @@ import { Merc } from '../models/Merc.js';
 
 
 defineProps({ merc: { type: Merc, required: true } })
+
 </script>
 
 

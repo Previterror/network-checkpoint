@@ -90,8 +90,10 @@ onMounted(() => {
                                     </a>
                                     <a :href="profile.github" v-if="profile.github"
                                         class="mdi mdi-github text-decoration-none text-dark"></a>
-                                    <div>
-                                        <EditButton class="p-1" :user="user" />
+                                    <div v-if="user">
+                                        <div v-if="user.id == profile.id">
+                                            <EditButton class="p-1" :user="user" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
